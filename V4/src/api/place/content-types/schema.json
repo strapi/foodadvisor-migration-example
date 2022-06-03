@@ -2,8 +2,9 @@
   "kind": "collectionType",
   "collectionName": "places",
   "info": {
-    "name": "place",
-    "description": ""
+    "singularName": "place",
+    "pluralName": "places",
+    "displayName": "place"
   },
   "options": {
     "increments": true,
@@ -18,8 +19,10 @@
       "unique": true
     },
     "restaurants": {
-      "via": "place",
-      "collection": "restaurant"
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::restaurant.restaurant",
+      "mappedBy": "place"
     }
   }
 }

@@ -2,8 +2,9 @@
   "kind": "singleType",
   "collectionName": "globals",
   "info": {
-    "name": "global",
-    "description": ""
+    "singularName": "global",
+    "pluralName": "globals",
+    "displayName": "Global"
   },
   "options": {
     "increments": true,

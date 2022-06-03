@@ -3,7 +3,9 @@
   "collectionName": "articles",
   "info": {
     "name": "article",
-    "description": ""
+    "singularName": "article",
+    "pluralName": "articles",
+    "displayName": "Articles"
   },
   "options": {
     "increments": true,
@@ -40,15 +42,14 @@
       "targetField": "title"
     },
     "image": {
-      "model": "file",
-      "via": "related",
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
-        "files",
         "images",
+        "files",
         "videos"
       ],
-      "plugin": "upload",
-      "required": true,
       "pluginOptions": {
         "i18n": {
           "localized": false
@@ -66,11 +67,7 @@
     },
     "blocks": {
       "type": "dynamiczone",
-      "components": [
-        "blocks.related-articles",
-        "blocks.faq",
-        "blocks.cta-command-line"
-      ],
+      "components": ["blocks.related-articles", "blocks.faq", "blocks.cta-command-line"],
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -78,13 +75,16 @@
       }
     },
     "category": {
-      "model": "category",
-      "via": "articles"
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "articles"
     },
     "author": {
-      "via": "articles",
-      "plugin": "users-permissions",
-      "model": "user"
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "articles"
     },
     "publish_at": {
       "pluginOptions": {

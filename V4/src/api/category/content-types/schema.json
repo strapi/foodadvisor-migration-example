@@ -2,8 +2,9 @@
   "kind": "collectionType",
   "collectionName": "categories",
   "info": {
-    "name": "category",
-    "description": ""
+    "singularName": "category",
+    "pluralName": "categories",
+    "displayName": "category"
   },
   "options": {
     "increments": true,
@@ -20,13 +21,17 @@
       "type": "uid",
       "targetField": "name"
     },
-    "articles": {
-      "via": "category",
-      "collection": "article"
-    },
     "restaurants": {
-      "via": "category",
-      "collection": "restaurant"
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::restaurant.restaurant",
+      "mappedBy": "category"
+    },
+    "articles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::article.article",
+      "mappedBy": "category"
     }
   }
 }

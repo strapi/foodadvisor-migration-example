@@ -2,8 +2,9 @@
   "kind": "singleType",
   "collectionName": "restaurant_pages",
   "info": {
-    "name": "restaurantPage",
-    "description": ""
+    "singularName": "restaurant-page",
+    "pluralName": "restaurant-pages",
+    "displayName": "RestaurantPage"
   },
   "options": {
     "increments": true,

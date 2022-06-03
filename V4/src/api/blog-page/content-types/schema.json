@@ -2,8 +2,9 @@
   "kind": "singleType",
   "collectionName": "blog_pages",
   "info": {
-    "name": "blogPage",
-    "description": ""
+    "singularName": "blog-page",
+    "pluralName": "blog-pages",
+    "displayName": "BlogPage"
   },
   "options": {
     "increments": true,
@@ -66,10 +67,7 @@
     },
     "blocks": {
       "type": "dynamiczone",
-      "components": [
-        "blocks.cta",
-        "blocks.cta-command-line"
-      ],
+      "components": ["blocks.cta", "blocks.cta-command-line"],
       "pluginOptions": {
         "i18n": {
           "localized": true

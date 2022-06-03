@@ -3,8 +3,9 @@
   "connection": "default",
   "collectionName": "reviews",
   "info": {
-    "name": "review",
-    "description": ""
+    "singularName": "review",
+    "pluralName": "reviews",
+    "displayName": "review"
   },
   "options": {
     "increments": true,
@@ -38,13 +39,16 @@
       "min": 1
     },
     "author": {
-      "via": "reviews",
-      "plugin": "users-permissions",
-      "model": "user"
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "reviews"
     },
     "restaurant": {
-      "via": "reviews",
-      "model": "restaurant"
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::restaurant.restaurant",
+      "inversedBy": "reviews"
     }
   }
 }

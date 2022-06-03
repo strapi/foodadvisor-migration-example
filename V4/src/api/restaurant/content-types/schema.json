@@ -3,8 +3,9 @@
   "connection": "default",
   "collectionName": "restaurants",
   "info": {
-    "name": "restaurant",
-    "description": ""
+    "singularName": "restaurant",
+    "pluralName": "restaurants",
+    "displayName": "restaurant",
   },
   "options": {
     "increments": true,
@@ -51,10 +52,14 @@
       "targetField": "name"
     },
     "images": {
-      "collection": "file",
-      "via": "related",
-      "plugin": "upload",
+      "type": "media",
+      "multiple": true,
       "required": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
       "pluginOptions": {
         "i18n": {
           "localized": false
@@ -112,16 +117,22 @@
       ]
     },
     "reviews": {
-      "via": "restaurant",
-      "collection": "review"
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::review.review",
+      "mappedBy": "restaurant"
     },
     "category": {
-      "model": "category",
-      "via": "restaurants"
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "restaurants"
     },
     "place": {
-      "via": "restaurants",
-      "model": "place"
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::place.place",
+      "inversedBy": "restaurants"
     },
     "publish_at": {
       "pluginOptions": {

@@ -2,8 +2,9 @@
   "kind": "collectionType",
   "collectionName": "pages",
   "info": {
-    "name": "Page",
-    "description": ""
+    "singularName": "page",
+    "pluralName": "pages",
+    "displayName": "page"
   },
   "options": {
     "increments": true,
