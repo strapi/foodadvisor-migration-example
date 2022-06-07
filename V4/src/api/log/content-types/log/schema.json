@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "logs",
+  "info": {
+    "singularName": "log",
+    "pluralName": "logs",
+    "displayName": "Log"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "action": {
+      "type": "string"
+    },
+    "content_type": {
+      "type": "string"
+    },
+    "author": {
+      "type": "json"
+    },
+    "before": {
+      "type": "json"
+    },
+    "after": {
+      "type": "json"
+    }
+  }
+}

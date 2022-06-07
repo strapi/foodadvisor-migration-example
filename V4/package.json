@@ -20,16 +20,13 @@
     "eslint-plugin-react": "^7.7.0"
   },
   "dependencies": {
-    "body-scroll-lock": "^3.1.5",
-    "fs-extra": "^10.0.0",
-    "knex": "0.16.3",
-    "lodash": "^4.17.5",
-    "reactour": "^1.18.0",
-    "sqlite3": "5.0.2",
-    "@strapi/strapi": "4.1.12",
-    "@strapi/plugin-users-permissions": "4.1.12",
+    "@strapi/codemods": "^1.1.1",
     "@strapi/plugin-i18n": "4.1.12",
-    "@strapi/plugin-graphql": "4.1.12",
+    "@strapi/plugin-users-permissions": "4.1.12",
+    "@strapi/strapi": "4.1.12",
+    "fs-extra": "^10.0.0",
+    "lodash": "^4.17.5",
+    "sqlite3": "5.0.2",
     "unzip-stream": "^0.3.0",
     "uuid-v4": "^0.1.0"
   },

@@ -1,7 +1,5 @@
 'use strict';
 
-// come back to later
-
 /**
  * Cron config that gives you an opportunity
  * to run scheduled jobs.
@@ -11,54 +9,30 @@
  */
 
 module.exports = {
-  '*/1 * * * *': async () => {
-    // fetch articles to publish
-    const draftRestaurantsToPublish = await strapi.api.restaurant.services.restaurant.find({
-      _publicationState: 'preview', // preview returns both draft and published entries
-      published_at_null: true, // so we add another condition here to filter entries that have not been published
-      publish_at_lt: new Date(),
-      ready: true,
+  '*/1 * * * *': async ({ strapi }) => {
+    const contentTypes = ['api::article.article', 'api::restaurant.restaurant', 'api::page.page'];
+
+    contentTypes.map(async (type) => {
+      const draftArticlesToPublish = await strapi.db.query(type).findMany({
+        where: {
+          ready: true,
+          publishedAt: null,
+          publish_at: {
+            $lte: new Date(),
+          },
+        },
+      });
+
+      await Promise.all(
+        draftArticlesToPublish.map(async (article) => {
+          return await strapi.db.query(type).update({
+            where: { id: article.id },
+            data: {
+              publishedAt: new Date(),
+            },
+          });
+        })
+      );
     });
-
-    // update published_at of restaurants
-    await Promise.all(
-      draftRestaurantsToPublish.map((restaurant) => {
-        return strapi.api.restaurant.services.restaurant.update(
-          { id: restaurant.id },
-          { published_at: new Date() }
-        );
-      })
-    );
-
-    const draftArticlesToPublish = await strapi.api.article.services.article.find({
-      _publicationState: 'preview', // preview returns both draft and published entries
-      published_at_null: true, // so we add another condition here to filter entries that have not been published
-      publish_at_lt: new Date(),
-      ready: true,
-    });
-
-    // update published_at of articles
-    await Promise.all(
-      draftArticlesToPublish.map((article) => {
-        return strapi.api.article.services.article.update(
-          { id: article.id },
-          { published_at: new Date() }
-        );
-      })
-    );
-
-    const draftPagesToPublish = await strapi.api.page.services.page.find({
-      _publicationState: 'preview', // preview returns both draft and published entries
-      published_at_null: true, // so we add another condition here to filter entries that have not been published
-      publish_at_lt: new Date(),
-      ready: true,
-    });
-
-    // update published_at of pages
-    await Promise.all(
-      draftPagesToPublish.map((page) => {
-        return strapi.api.page.services.page.update({ id: page.id }, { published_at: new Date() });
-      })
-    );
   },
 };
