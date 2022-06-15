@@ -7,7 +7,7 @@ Welcome to FoodAdvisor
 - Run the following command:
 
 ```
-yarn && yarn run seed && yarn develop
+yarn && yarn develop
 ```
 
 This will install the dependencies and run your server. You can run these commands separately.
