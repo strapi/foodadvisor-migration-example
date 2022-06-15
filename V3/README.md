@@ -1,4 +1,4 @@
-# FoodAdvisor - API
+# FoodAdvisor Migration Example
 
 Welcome to FoodAdvisor
 
